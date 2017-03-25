@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->>
+ <head>
+  <
+  <!-- <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> --> <!-- old version, doesnt work in localhost --> 
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>BGES Visiting</title>
+    <!--REQUIRED STYLE SHEETS-->
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLE CSS -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+       <!-- CUSTOM STYLE CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+   
+  <style>
+input {
+    width: 78%;
+    padding: 1px 1px;
+    margin: 0px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+    table{
+          margin-top: 40px;
+          max-width: 500px;
+          width: -moz-available;
+      }
+    td {
+        vertical-align: middle;
+    }
+    label{
+        padding:0;
+        margin: 0;
+          
+      }
+      button{
+          width: 19%;
+          padding:0px;
+          margin: 0px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+     
+</style>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWYrUoRcdvzXKIoD7B63v401coNyxq1kc"></script>   
+<script type="text/javascript">
+
+if(navigator.geolocation) {
+    
+navigator.geolocation.getCurrentPosition(function(position) {
+    
+function updateMarkerPosition(latLng) {
+  document.getElementById('latlng').value = [latLng.lat(),latLng.lng()];
+  //document.getElementById('lng').value = [latLng.lng()];
+  }
+
+function updateMarkerPositionSekarang(latLng) {
+  document.getElementById('latlngSekarang').value = [latLng.lat(),latLng.lng()];
+  //document.getElementById('lng').value = [latLng.lng()];
+  }
+
+    var myOptions = {
+      zoom: 15,
+      scaleControl: true,
+      center:  new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+        
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+ 
+    var map = new google.maps.Map(document.getElementById("map"),
+        myOptions);
+
+    var marker1 = new google.maps.Marker({
+        position : new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+        title : 'lokasi',
+        map : map,
+        draggable : true
+    });
+    
+
+    
+    
+    var markerSekarang = new google.maps.Marker({
+        position : new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+        title : 'lokasi',
+        map : map,
+        //draggable : true
+    });
+    
+    updateMarkerPositionSekarang(markerSekarang.getPosition());
+ 
+ //updateMarkerPosition(latLng);
+
+    google.maps.event.addListener(marker1, 'drag', function() {
+        updateMarkerPosition(marker1.getPosition());
+        }
+    );
+    
+    
+        }
+    )
+}
+    
+</script>
+     
+
+
+ </head>
+ 
+ <body>
+ <div class="navbar navbar-inverse navbar-fixed-top">
+     
+     
+       
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"> BGES</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                 <!-- Bagian lik yg perlu diganti    -->
+                
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="peta.html">TIKOR</a></li>
+                        <li><a href="              ">FORM</a></li>   <!-- isi link form diantara tanda petik dua -->
+                        <li><a href="              ">VIEW</a></li>   <!-- isi link tanggapan diantara tanda petik dua -->
+                </ul>
+                
+                 <!-- akhir-->
+            </div>
+           
+        </div>
+    </div>
+     
+ <br/>
+     
+     
+<center>
+ <table>
+    <tr>
+        <td>
+            <div class="control-group">
+                <center><label class="control-label" for="latlngSekarang">Posisi Sekarang</label>
+                <div class="controls">
+                    <!--<input type="text" name='latlngSekarang' id='latlngSekarang' >  <button id="copyButton">Copy</button> -->
+                    <input type="text" name='latlngSekarang' id='latlngSekarang' > 
+                    <button class="btn1" data-clipboard-action="copy" data-clipboard-target="#latlngSekarang">Copy</button>
+                </div>
+                </center>
+            </div>
+        </td>        
+    </tr>
+    
+    
+    <tr>
+        <td> 
+            <div class="control-group">         
+                <center><label class="control-label" for="latlng">Posisi terbaru</label>
+                <div class="controls" >
+                    <!--<input type="text" name='latlng' id='latlng'>  <button id="copyButton">Copy</button> -->
+                    <input id="latlng" type="text" name='latlng' >
+                    <button class="btn2" data-clipboard-action="copy" data-clipboard-target="#latlng">Copy</button>
+                </div>
+                </center>
+            </div>
+        </td>        
+     </tr>
+      
+</table>
+</center>
+
+  <div id="map" style="width:100%;height: 500px;"></div>
+  
+    <br/>
+
+     
+    <script src="assets/plugins/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP CORE SCRIPT   -->
+    <script src="assets/plugins/bootstrap.min.js"></script>  
+    <!-- CUSTOM SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+     
+     <!-- 2. Include library -->
+    <script src="assets/js/clipboard.min.js"></script>
+     <!-- 3. Instantiate clipboard -->
+    <script>
+    var clipboard = new Clipboard('.btn1');
+    var clipboard2 = new Clipboard('.btn2');
+
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+    </script> 
+
+ </body>
+</html>
